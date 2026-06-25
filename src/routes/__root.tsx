@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -111,6 +112,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Toaster richColors position="top-right" />
       {isAdmin ? (
         <Outlet />
       ) : (
