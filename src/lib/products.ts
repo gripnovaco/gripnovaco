@@ -1,3 +1,36 @@
+import p1 from "@/assets/products/p1.jpg";
+import p2 from "@/assets/products/p2.jpg";
+import p3 from "@/assets/products/p3.jpg";
+import p4 from "@/assets/products/p4.jpg";
+import p5 from "@/assets/products/p5.jpg";
+import p6 from "@/assets/products/p6.jpg";
+import p7 from "@/assets/products/p7.jpg";
+import p8 from "@/assets/products/p8.jpg";
+import p9 from "@/assets/products/p9.jpg";
+import p10 from "@/assets/products/p10.jpg";
+import p11 from "@/assets/products/p11.jpg";
+import p12 from "@/assets/products/p12.jpg";
+import p13 from "@/assets/products/p13.jpg";
+import p14 from "@/assets/products/p14.jpg";
+import p15 from "@/assets/products/p15.jpg";
+import p16 from "@/assets/products/p16.jpg";
+import p17 from "@/assets/products/p17.jpg";
+import p18 from "@/assets/products/p18.jpg";
+import p19 from "@/assets/products/p19.jpg";
+import p20 from "@/assets/products/p20.jpg";
+import p21 from "@/assets/products/p21.jpg";
+import p22 from "@/assets/products/p22.jpg";
+import p23 from "@/assets/products/p23.jpg";
+import p24 from "@/assets/products/p24.jpg";
+import p25 from "@/assets/products/p25.jpg";
+import p26 from "@/assets/products/p26.jpg";
+
+export const PRODUCT_IMAGES: Record<number, string> = {
+  1: p1, 2: p2, 3: p3, 4: p4, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p10,
+  11: p11, 12: p12, 13: p13, 14: p14, 15: p15, 16: p16, 17: p17, 18: p18,
+  19: p19, 20: p20, 21: p21, 22: p22, 23: p23, 24: p24, 25: p25, 26: p26,
+};
+
 export type Product = {
   id: string;
   slug: string;
@@ -105,7 +138,7 @@ function p(
     specifications: specs.map(([label, value]) => ({ label, value })),
     usage: baseUsage,
     faqs: baseFaqs,
-    images: [],
+    images: PRODUCT_IMAGES[id] ? [PRODUCT_IMAGES[id]] : [],
     rating: 4.3 + ((id % 7) / 10),
     reviewCount: 24 + (id * 7) % 280,
     inStock: true,
