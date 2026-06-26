@@ -8,7 +8,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2">
             <span className="grid size-9 place-items-center rounded-xl gradient-brand text-white font-display font-black">G</span>
-            <span className="font-display text-xl font-extrabold">Grip<span className="text-primary">Nova</span></span>
+            <span className="font-display text-xl font-extrabold">Grip <span className="text-primary">Nova</span> Co.</span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             Premium physiotherapy, rehabilitation and recovery products — delivered across India.
@@ -32,7 +32,7 @@ export function Footer() {
         <div>
           <h4 className="font-display text-sm font-bold uppercase tracking-wider">Information</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/about" className="hover:text-primary">About GripNova</Link></li>
+            <li><Link to="/about" className="hover:text-primary">About Grip Nova Co.</Link></li>
             <li><Link to="/blog" className="hover:text-primary">Blog</Link></li>
             <li><Link to="/faqs" className="hover:text-primary">FAQs</Link></li>
             <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
@@ -55,7 +55,7 @@ export function Footer() {
       </div>
       <div className="border-t border-border">
         <div className="container-page flex flex-col items-center justify-between gap-2 py-5 text-xs text-muted-foreground sm:flex-row">
-          <span>© {new Date().getFullYear()} GripNova. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Grip Nova Co. All rights reserved.</span>
           <Link to="/admin/login" className="hover:text-primary">Admin</Link>
         </div>
       </div>
