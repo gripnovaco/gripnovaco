@@ -14,7 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -66,11 +66,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "GripNova — Premium Physiotherapy & Rehabilitation Products" },
+      { title: "Grip Nova Co. — Premium Physiotherapy & Rehabilitation Products" },
       { name: "description", content: "Shop premium physiotherapy, rehab, pain management and orthopedic recovery products. Fast delivery across India. Order on WhatsApp." },
-      { name: "author", content: "GripNova" },
+      { name: "author", content: "Grip Nova Co." },
       { name: "theme-color", content: "#3a86ff" },
-      { property: "og:title", content: "GripNova — Premium Physiotherapy & Rehabilitation" },
+      { property: "og:title", content: "Grip Nova Co. — Premium Physiotherapy & Rehabilitation" },
       { property: "og:description", content: "Premium physiotherapy, rehab and recovery products. Order on WhatsApp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -122,7 +122,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
-          <WhatsAppFloat />
+
         </div>
       )}
     </QueryClientProvider>

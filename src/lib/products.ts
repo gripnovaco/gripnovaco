@@ -24,11 +24,16 @@ import p23 from "@/assets/products/p23.jpg";
 import p24 from "@/assets/products/p24.jpg";
 import p25 from "@/assets/products/p25.jpg";
 import p26 from "@/assets/products/p26.jpg";
+import p27 from "@/assets/products/p27.jpg";
+import p28 from "@/assets/products/p28.jpg";
+import p29 from "@/assets/products/p29.jpg";
+import p30 from "@/assets/products/p30.jpg";
 
 export const PRODUCT_IMAGES: Record<number, string> = {
   1: p1, 2: p2, 3: p3, 4: p4, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p10,
   11: p11, 12: p12, 13: p13, 14: p14, 15: p15, 16: p16, 17: p17, 18: p18,
   19: p19, 20: p20, 21: p21, 22: p22, 23: p23, 24: p24, 25: p25, 26: p26,
+  27: p27, 28: p28, 29: p29, 30: p30,
 };
 
 export type Product = {
@@ -104,7 +109,7 @@ export const CATEGORIES: Category[] = [
 
 const baseFaqs = [
   { q: "Is this product suitable for daily use?", a: "Yes, it's designed for safe daily use as part of your therapy or fitness routine. Follow the included guidance for best results." },
-  { q: "Do you provide a warranty?", a: "All GripNova products carry a manufacturer warranty against defects. Contact us on WhatsApp for warranty claims." },
+  { q: "Do you provide a warranty?", a: "All Grip Nova Co. products carry a manufacturer warranty against defects. Contact us on WhatsApp for warranty claims." },
   { q: "How do I place an order?", a: "Tap any Buy Now / Order Now button to chat with us on WhatsApp. We confirm pricing, payment and delivery in minutes." },
 ];
 
@@ -288,4 +293,28 @@ export const SEED_PRODUCTS: Product[] = [
     "Premium 10-loop stretching strap for guided flexibility, yoga and physical therapy. Includes printed pose guide.",
     ["10 numbered loops", "Strong woven nylon", "Pose guide included", "Use for yoga, dance & rehab"],
     [["Length", "1.8 m"], ["Material", "Woven nylon"]]),
+  p(27, "Grip Nova Weighted Grip Wrist Wraps", "hand-grip-strengtheners", 1199, 1799,
+    "Padded weighted wrist wraps with metal D-rings for grip & forearm training.",
+    "Heavy-duty padded wrist wraps featuring reinforced metal D-rings, branded Grip Nova patch and durable stitched nylon. Designed for grip strength, deadlifts, pull-ups and physiotherapy resistance work.",
+    ["Reinforced metal D-rings", "Thick padded wrist support", "Branded Grip Nova patch", "Sold as a pair"],
+    [["Material", "Nylon + neoprene padding"], ["Length", "Adjustable, fits 6–9 in"], ["Sold as", "Pair"]],
+    { featured: true, newArrival: true }),
+  p(28, "Finger Weights Original — Set of 10 (Multicolor)", "finger-exercisers", 2499, 3499,
+    "Set of 10 colour-coded finger weights for hand & finger strengthening.",
+    "Original multicolor finger weights — a set of 10 small weighted clips designed to slip onto each finger. Helps rebuild finger strength, dexterity and endurance for musicians, typists, gamers and post-injury rehab patients.",
+    ["Set of 10 — covers both hands", "Five colour-coded resistance levels", "Lightweight, comfortable fit", "Ideal for musicians, climbers and rehab"],
+    [["Pieces", "10"], ["Material", "ABS plastic + steel weights"], ["Use", "Finger strength & dexterity"]],
+    { newArrival: true }),
+  p(29, "3-in-1 Foam Roller Set", "foam-rollers", 2099, 2999,
+    "Complete 3-in-1 set: deep-tissue roller, smooth core roller and massage stick.",
+    "Versatile 3-in-1 foam roller set including a textured deep-tissue roller, a smooth EVA core roller that nests inside, and a handheld massage stick. Perfect for full-body recovery, myofascial release and pre/post-workout warm-ups.",
+    ["Deep-tissue textured roller", "Hollow EVA core roller", "Handheld massage stick included", "Travel-friendly nested design"],
+    [["Roller length", "33 cm"], ["Roller diameter", "14 cm"], ["Stick length", "45 cm"], ["Pieces", "3"]],
+    { featured: true, bestSeller: true }),
+  p(30, "Magic Massager with 7 Attachments", "ems-stimulators", 1350, 1999,
+    "Handheld electric body massager with 7 interchangeable heads.",
+    "The Magic Massager with 7 Attachments is a complete body relaxation tool to relieve pain, stress and muscle tension. Interchangeable heads target the back, neck, shoulders, legs and joints for deep, effective massage. Powerful motor improves blood circulation and supports faster recovery — ideal for daily home therapy.",
+    ["7 interchangeable massage heads", "Powerful, low-noise motor", "Targets back, neck, shoulders & legs", "Improves circulation & recovery"],
+    [["Attachments", "7"], ["Power", "Corded electric"], ["Weight", "2.18 kg"], ["Dimensions", "46 × 35 × 32 cm"]],
+    { featured: true, bestSeller: true }),
 ];

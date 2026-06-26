@@ -23,7 +23,7 @@ export function Header() {
             G
           </span>
           <span className="font-display text-xl font-extrabold tracking-tight">
-            Grip<span className="text-primary">Nova</span>
+            Grip <span className="text-primary">Nova</span> Co.
           </span>
         </Link>
 
