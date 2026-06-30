@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, CheckCircle2, MessageCircle, Sparkles } from "lucide-react";
-import { getService, SERVICES } from "@/lib/services";
+import { getService, SERVICES, type Service } from "@/lib/services";
 import { whatsappEnquiryUrl } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -38,7 +38,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetail() {
-  const s = Route.useLoaderData();
+  const s = Route.useLoaderData() as Service;
   const waUrl = whatsappEnquiryUrl(`Hello Grip Nova Co., I'm interested in your "${s.title}" service. Please share details and availability.`);
 
   return (
