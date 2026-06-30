@@ -6,6 +6,7 @@ export type BlogPost = {
   readMinutes: number;
   publishedAt: string;
   content: string; // markdown-ish plain paragraphs
+  image: string;
 };
 
 const lorem = (topic: string) => `Physiotherapy plays a central role in modern, drug-free recovery. In this guide we explore how a structured ${topic.toLowerCase()} routine, performed consistently, can dramatically improve outcomes for patients of all ages.
