@@ -13,6 +13,7 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ShippingPolicyRouteImport } from './routes/shipping-policy'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as FaqsRouteImport } from './routes/faqs'
 import { Route as ExchangePolicyRouteImport } from './routes/exchange-policy'
@@ -24,6 +25,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as ShopCategoryRouteImport } from './routes/shop.$category'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
@@ -49,6 +51,11 @@ const ShopRoute = ShopRouteImport.update({
 const ShippingPolicyRoute = ShippingPolicyRouteImport.update({
   id: '/shipping-policy',
   path: '/shipping-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -106,6 +113,11 @@ const ShopCategoryRoute = ShopCategoryRouteImport.update({
   path: '/$category',
   getParentRoute: () => ShopRoute,
 } as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ProductSlugRoute = ProductSlugRouteImport.update({
   id: '/product/$slug',
   path: '/product/$slug',
@@ -147,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/exchange-policy': typeof ExchangePolicyRoute
   '/faqs': typeof FaqsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/services': typeof ServicesRouteWithChildren
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -157,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -169,6 +183,7 @@ export interface FileRoutesByTo {
   '/exchange-policy': typeof ExchangePolicyRoute
   '/faqs': typeof FaqsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/services': typeof ServicesRouteWithChildren
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -179,6 +194,7 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
   '/admin': typeof AdminIndexRoute
 }
@@ -193,6 +209,7 @@ export interface FileRoutesById {
   '/exchange-policy': typeof ExchangePolicyRoute
   '/faqs': typeof FaqsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/services': typeof ServicesRouteWithChildren
   '/shipping-policy': typeof ShippingPolicyRoute
   '/shop': typeof ShopRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -203,6 +220,7 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/services/$slug': typeof ServicesSlugRoute
   '/shop/$category': typeof ShopCategoryRoute
   '/admin/': typeof AdminIndexRoute
 }
@@ -218,6 +236,7 @@ export interface FileRouteTypes {
     | '/exchange-policy'
     | '/faqs'
     | '/privacy-policy'
+    | '/services'
     | '/shipping-policy'
     | '/shop'
     | '/sitemap.xml'
@@ -228,6 +247,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/blog/$slug'
     | '/product/$slug'
+    | '/services/$slug'
     | '/shop/$category'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -240,6 +260,7 @@ export interface FileRouteTypes {
     | '/exchange-policy'
     | '/faqs'
     | '/privacy-policy'
+    | '/services'
     | '/shipping-policy'
     | '/shop'
     | '/sitemap.xml'
@@ -250,6 +271,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/blog/$slug'
     | '/product/$slug'
+    | '/services/$slug'
     | '/shop/$category'
     | '/admin'
   id:
@@ -263,6 +285,7 @@ export interface FileRouteTypes {
     | '/exchange-policy'
     | '/faqs'
     | '/privacy-policy'
+    | '/services'
     | '/shipping-policy'
     | '/shop'
     | '/sitemap.xml'
@@ -273,6 +296,7 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/blog/$slug'
     | '/product/$slug'
+    | '/services/$slug'
     | '/shop/$category'
     | '/admin/'
   fileRoutesById: FileRoutesById
@@ -287,6 +311,7 @@ export interface RootRouteChildren {
   ExchangePolicyRoute: typeof ExchangePolicyRoute
   FaqsRoute: typeof FaqsRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
   ShippingPolicyRoute: typeof ShippingPolicyRoute
   ShopRoute: typeof ShopRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -322,6 +347,13 @@ declare module '@tanstack/react-router' {
       path: '/shipping-policy'
       fullPath: '/shipping-policy'
       preLoaderRoute: typeof ShippingPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -401,6 +433,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopCategoryRouteImport
       parentRoute: typeof ShopRoute
     }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/product/$slug': {
       id: '/product/$slug'
       path: '/product/$slug'
@@ -474,6 +513,18 @@ const BlogRouteChildren: BlogRouteChildren = {
 
 const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
+interface ServicesRouteChildren {
+  ServicesSlugRoute: typeof ServicesSlugRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesSlugRoute: ServicesSlugRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
+
 interface ShopRouteChildren {
   ShopCategoryRoute: typeof ShopCategoryRoute
 }
@@ -494,6 +545,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExchangePolicyRoute: ExchangePolicyRoute,
   FaqsRoute: FaqsRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ServicesRoute: ServicesRouteWithChildren,
   ShippingPolicyRoute: ShippingPolicyRoute,
   ShopRoute: ShopRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
