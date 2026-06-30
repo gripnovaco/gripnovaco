@@ -21,7 +21,9 @@ function BlogPost() {
       <span className="text-xs font-semibold uppercase tracking-wider text-primary">{post.category}</span>
       <h1 className="mt-3 font-display text-4xl font-extrabold leading-tight sm:text-5xl">{post.title}</h1>
       <p className="mt-3 text-sm text-muted-foreground">{post.publishedAt} · {post.readMinutes} min read</p>
-      <div className="my-8 aspect-[16/9] rounded-3xl bg-gradient-to-br from-sky-100 to-blue-200" />
+      <div className="my-8 aspect-[16/9] overflow-hidden rounded-3xl bg-secondary">
+        <img src={post.image} alt={post.title} className="h-full w-full object-cover" />
+      </div>
       <div className="prose prose-lg max-w-none space-y-5 text-foreground/90 leading-relaxed">
         {post.content.split("\n\n").map((para, i) => <p key={i}>{para}</p>)}
       </div>
