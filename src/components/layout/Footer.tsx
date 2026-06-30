@@ -33,6 +33,7 @@ export function Footer() {
           <h4 className="font-display text-sm font-bold uppercase tracking-wider">Information</h4>
           <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
             <li><Link to="/about" className="hover:text-primary">About Grip Nova Co.</Link></li>
+            <li><Link to="/services" className="hover:text-primary">Physiotherapy Services</Link></li>
             <li><Link to="/blog" className="hover:text-primary">Blog</Link></li>
             <li><Link to="/faqs" className="hover:text-primary">FAQs</Link></li>
             <li><Link to="/contact" className="hover:text-primary">Contact</Link></li>
