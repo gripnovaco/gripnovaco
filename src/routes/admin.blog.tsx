@@ -13,6 +13,7 @@ export const Route = createFileRoute("/admin/blog")({
 const empty = (): BlogPost => ({
   slug: "", title: "", excerpt: "", category: "Recovery", readMinutes: 4,
   publishedAt: new Date().toISOString().slice(0, 10), content: "",
+  image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
 });
 
 function AdminBlog() {
