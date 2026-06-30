@@ -244,10 +244,12 @@ function KnowledgeSection() {
   return (
     <Section title="Physiotherapy Knowledge Center" subtitle="Expert-written guides to help you recover smarter." action={{ to: "/blog", label: "Read the blog" }}>
       <div className="grid gap-6 md:grid-cols-3">
-        {posts.map((post, i) => (
+        {posts.map((post) => (
           <Link key={post.slug} to="/blog/$slug" params={{ slug: post.slug }}
             className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-[var(--shadow-soft)]">
-            <div className={`aspect-[16/9] bg-gradient-to-br ${["from-sky-100 to-blue-200","from-blue-100 to-indigo-200","from-cyan-100 to-sky-200"][i]}`} />
+            <div className="aspect-[16/9] overflow-hidden bg-secondary">
+              <img src={post.image} alt={post.title} loading="lazy" className="h-full w-full object-cover transition group-hover:scale-105" />
+            </div>
             <div className="p-5">
               <span className="text-xs font-semibold uppercase tracking-wider text-primary">{post.category}</span>
               <h3 className="mt-2 font-display text-lg font-bold leading-tight group-hover:text-primary">{post.title}</h3>

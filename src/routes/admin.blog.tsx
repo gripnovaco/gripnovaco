@@ -13,6 +13,7 @@ export const Route = createFileRoute("/admin/blog")({
 const empty = (): BlogPost => ({
   slug: "", title: "", excerpt: "", category: "Recovery", readMinutes: 4,
   publishedAt: new Date().toISOString().slice(0, 10), content: "",
+  image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
 });
 
 function AdminBlog() {
@@ -75,6 +76,7 @@ function AdminBlog() {
               <input type="number" placeholder="Read mins" value={editing.readMinutes} onChange={(e) => setEditing({ ...editing, readMinutes: +e.target.value })} className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm" />
               <input type="date" value={editing.publishedAt} onChange={(e) => setEditing({ ...editing, publishedAt: e.target.value })} className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm" />
             </div>
+            <input placeholder="Image URL" value={editing.image} onChange={(e) => setEditing({ ...editing, image: e.target.value })} className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm" />
             <textarea rows={2} placeholder="Excerpt" value={editing.excerpt} onChange={(e) => setEditing({ ...editing, excerpt: e.target.value })} className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm" />
             <textarea rows={8} placeholder="Article content (separate paragraphs with blank lines)" value={editing.content} onChange={(e) => setEditing({ ...editing, content: e.target.value })} className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm" />
             <div className="flex justify-end gap-2">
