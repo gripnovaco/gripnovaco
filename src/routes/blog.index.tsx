@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useCatalog } from "@/lib/store";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({ meta: [{ title: "Physiotherapy Blog — GripNova" }] }),
   component: BlogIndex,
 });
