@@ -73,7 +73,7 @@ export const SEED_POSTS: BlogPost[] = [
     readMinutes: 4 + (i % 5),
     publishedAt: date.toISOString().slice(0, 10),
     content: lorem(topic),
-    image: IMAGE_POOL[i % IMAGE_POOL.length],
+    image: CATEGORY_IMAGE[category as string] ?? imgRecovery,
   } as BlogPost;
 });
 
