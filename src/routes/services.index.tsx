@@ -3,7 +3,7 @@ import { ArrowRight, HeartPulse, MessageCircle } from "lucide-react";
 import { SERVICES } from "@/lib/services";
 import { whatsappEnquiryUrl } from "@/lib/whatsapp";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Physiotherapy Services — Grip Nova Co." },
