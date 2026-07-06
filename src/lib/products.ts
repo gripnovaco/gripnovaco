@@ -28,12 +28,16 @@ import p27 from "@/assets/products/p27.jpg";
 import p28 from "@/assets/products/p28.jpg";
 import p29 from "@/assets/products/p29.jpg";
 import p30 from "@/assets/products/p30.jpg";
+import p31 from "@/assets/products/p31.jpg";
+import p32 from "@/assets/products/p32.jpg";
+import p33 from "@/assets/products/p33.jpg";
+import p34 from "@/assets/products/p34.jpg";
 
 export const PRODUCT_IMAGES: Record<number, string> = {
   1: p1, 2: p2, 3: p3, 4: p4, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p10,
   11: p11, 12: p12, 13: p13, 14: p14, 15: p15, 16: p16, 17: p17, 18: p18,
   19: p19, 20: p20, 21: p21, 22: p22, 23: p23, 24: p24, 25: p25, 26: p26,
-  27: p27, 28: p28, 29: p29, 30: p30,
+  27: p27, 28: p28, 29: p29, 30: p30, 31: p31, 32: p32, 33: p33, 34: p34,
 };
 
 export type Product = {
