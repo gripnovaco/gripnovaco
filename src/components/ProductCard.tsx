@@ -77,20 +77,20 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
           </div>
         </div>
 
-        <div className="mt-2 grid grid-cols-[auto_minmax(0,1fr)] gap-2">
+        <div className="mt-2 grid grid-cols-2 gap-2">
           <button
             type="button"
             onClick={() => { add(product.id, qty); toast.success(`Added ${qty} × ${product.name}`); }}
             aria-label="Add to cart"
-            className="inline-flex size-10 items-center justify-center rounded-full border border-input bg-background hover:bg-secondary"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:translate-y-[-1px]"
           >
-            <ShoppingCart className="size-4" />
+            <ShoppingCart className="size-3.5" /> Add to Cart
           </button>
           <a
             href={whatsappOrderUrl([{ name: product.name, quantity: qty }])}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-3 py-2 text-xs font-semibold text-primary-foreground shadow-[var(--shadow-glow)] hover:translate-y-[-1px] transition"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-destructive px-3 py-2 text-xs font-semibold text-destructive-foreground shadow-[0_8px_24px_-8px_oklch(0.6_0.22_25/0.5)] transition hover:translate-y-[-1px]"
           >
             <MessageCircle className="size-3.5" /> Buy Now
           </a>
