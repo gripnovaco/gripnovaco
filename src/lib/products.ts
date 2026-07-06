@@ -109,6 +109,7 @@ export const CATEGORIES: Category[] = [
   { slug: "exercise-balls", name: "Exercise Balls", group: "Fitness & Recovery", description: "Anti-burst stability balls for core and posture." },
   { slug: "yoga-mats", name: "Yoga Mats", group: "Fitness & Recovery", description: "Premium non-slip yoga and pilates mats." },
   { slug: "stretching-straps", name: "Stretching Straps", group: "Fitness & Recovery", description: "Multi-loop straps for guided stretching." },
+  { slug: "weight-cups", name: "Weight Cups", group: "Fitness & Recovery", description: "Hand-held weighted cups for strength training and rehab." },
 ];
 
 const baseFaqs = [
