@@ -82,7 +82,7 @@ export const useCatalog = create<CatalogState>()(
       deletePost: (slug) => set((s) => ({ posts: s.posts.filter((x) => x.slug !== slug) })),
       reset: () => set({ products: SEED_PRODUCTS, posts: SEED_POSTS }),
     }),
-    { name: "gripnova-catalog", version: 5 },
+    { name: "gripnova-catalog", version: 6 },
   ),
 );
 

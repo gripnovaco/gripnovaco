@@ -28,12 +28,16 @@ import p27 from "@/assets/products/p27.jpg";
 import p28 from "@/assets/products/p28.jpg";
 import p29 from "@/assets/products/p29.jpg";
 import p30 from "@/assets/products/p30.jpg";
+import p31 from "@/assets/products/p31.jpg";
+import p32 from "@/assets/products/p32.jpg";
+import p33 from "@/assets/products/p33.jpg";
+import p34 from "@/assets/products/p34.jpg";
 
 export const PRODUCT_IMAGES: Record<number, string> = {
   1: p1, 2: p2, 3: p3, 4: p4, 5: p5, 6: p6, 7: p7, 8: p8, 9: p9, 10: p10,
   11: p11, 12: p12, 13: p13, 14: p14, 15: p15, 16: p16, 17: p17, 18: p18,
   19: p19, 20: p20, 21: p21, 22: p22, 23: p23, 24: p24, 25: p25, 26: p26,
-  27: p27, 28: p28, 29: p29, 30: p30,
+  27: p27, 28: p28, 29: p29, 30: p30, 31: p31, 32: p32, 33: p33, 34: p34,
 };
 
 export type Product = {
@@ -105,6 +109,7 @@ export const CATEGORIES: Category[] = [
   { slug: "exercise-balls", name: "Exercise Balls", group: "Fitness & Recovery", description: "Anti-burst stability balls for core and posture." },
   { slug: "yoga-mats", name: "Yoga Mats", group: "Fitness & Recovery", description: "Premium non-slip yoga and pilates mats." },
   { slug: "stretching-straps", name: "Stretching Straps", group: "Fitness & Recovery", description: "Multi-loop straps for guided stretching." },
+  { slug: "weight-cups", name: "Weight Cups", group: "Fitness & Recovery", description: "Hand-held weighted cups for strength training and rehab." },
 ];
 
 const baseFaqs = [
@@ -317,4 +322,28 @@ export const SEED_PRODUCTS: Product[] = [
     ["7 interchangeable massage heads", "Powerful, low-noise motor", "Targets back, neck, shoulders & legs", "Improves circulation & recovery"],
     [["Attachments", "7"], ["Power", "Corded electric"], ["Weight", "2.18 kg"], ["Dimensions", "46 × 35 × 32 cm"]],
     { featured: true, bestSeller: true }),
+  p(31, "ActiveHand Support", "hand-grip-strengtheners", 899, 1499,
+    "Ergonomic hand support and grip strengthener for rehab and daily conditioning.",
+    "ActiveHand Support is an ergonomically shaped silicone hand exerciser designed to strengthen fingers, thumb and forearm muscles. Ideal for post-stroke rehabilitation, arthritis relief, carpal tunnel recovery and everyday grip conditioning. Soft, skin-friendly and shaped to fit the natural curve of the hand.",
+    ["Ergonomic anatomical shape", "Skin-friendly medical-grade silicone", "Progressive resistance for fingers & thumb", "Great for rehab, arthritis & daily use"],
+    [["Material", "Medical-grade silicone"], ["Use", "Grip, finger & thumb strengthening"], ["Hand", "Fits left or right"]],
+    { newArrival: true, featured: true }),
+  p(32, "Weight Cup — 1 kg", "weight-cups", 549, 899,
+    "1 kg hand-held weight cup with adjustable wrist strap.",
+    "Compact 1 kg weight cup for physiotherapy, gentle strength training and rehabilitation. Padded grip and adjustable wrist strap keep the cup secure during shoulder, arm and wrist exercises.",
+    ["1 kg fixed weight", "Padded ergonomic grip", "Adjustable wrist strap", "Ideal for beginners & rehab"],
+    [["Weight", "1 kg"], ["Material", "PVC shell + iron sand fill"], ["Strap", "Adjustable nylon"]],
+    { newArrival: true }),
+  p(33, "Weight Cup — 2 kg", "weight-cups", 749, 1199,
+    "2 kg hand-held weight cup with padded grip.",
+    "2 kg hand-held weight cup for intermediate strength training, shoulder rehab and physiotherapy routines. Balanced design with padded grip and secure wrist strap.",
+    ["2 kg fixed weight", "Balanced hand-fit design", "Padded grip + wrist strap", "For rehab & general fitness"],
+    [["Weight", "2 kg"], ["Material", "PVC shell + iron sand fill"], ["Strap", "Adjustable nylon"]],
+    { newArrival: true, bestSeller: true }),
+  p(34, "Weight Cup — 4 kg", "weight-cups", 1099, 1699,
+    "4 kg hand-held weight cup for strength training.",
+    "Heavy-duty 4 kg weight cup for progressive strength training, advanced rehab and functional fitness. Reinforced shell with padded ergonomic handle for a secure grip.",
+    ["4 kg fixed weight", "Reinforced durable shell", "Ergonomic padded handle", "For advanced strength & rehab"],
+    [["Weight", "4 kg"], ["Material", "Reinforced PVC + iron sand fill"], ["Strap", "Adjustable nylon"]],
+    { newArrival: true }),
 ];
