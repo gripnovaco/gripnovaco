@@ -1,13 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PolicyPage } from "./privacy-policy";
+import namasteHero from "@/assets/policies/namaste.jpg";
 
 export const Route = createFileRoute("/exchange-policy")({
   head: () => ({ meta: [{ title: "Exchange Policy — Grip Nova Co." }] }),
   component: () => (
     <PolicyPage
       title="Exchange Policy"
+      heroImage={namasteHero}
+      heroAlt="Namaste — a warm welcome from Grip Nova Co."
       body={[
-        "We want you to be completely satisfied with your Grip Nova Co. purchase. This policy explains when and how you can exchange a product.",
+        "Namaste — thank you for choosing Grip Nova Co. We want you to be completely satisfied with your purchase. This policy explains when and how you can exchange a product.",
         "Exchange window: exchanges are accepted within 7 days of delivery for products that are sealed, unused and in their original packaging with all tags and accessories intact.",
         "How to initiate an exchange: message us on WhatsApp at +91 72076 82536 with your order details (name, order date, product) and reason for exchange, along with clear photos of the product and packaging.",
         "Eligible reasons: manufacturing defect, wrong item shipped, damaged in transit (report within 48 hours of delivery), or incorrect size for supports/braces.",

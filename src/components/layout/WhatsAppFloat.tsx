@@ -4,14 +4,15 @@ import { whatsappEnquiryUrl } from "@/lib/whatsapp";
 export function WhatsAppFloat() {
   return (
     <a
-      href={whatsappEnquiryUrl("Hello GripNova Team, I'd like to enquire about your products.")}
+      href={whatsappEnquiryUrl("Hello Grip Nova Co. team, I'd like to chat about your products.")}
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-whatsapp px-4 py-3 text-whatsapp-foreground shadow-[var(--shadow-glow)] transition hover:scale-105"
+      title="Chat on WhatsApp"
+      className="fixed bottom-5 right-5 z-50 grid size-12 place-items-center rounded-full bg-whatsapp text-whatsapp-foreground shadow-[0_8px_24px_-6px_oklch(0.62_0.16_150/0.55)] transition hover:scale-110"
     >
       <MessageCircle className="size-5" />
-      <span className="hidden text-sm font-semibold sm:inline">Chat with us</span>
+      <span className="sr-only">Chat on WhatsApp</span>
     </a>
   );
 }
