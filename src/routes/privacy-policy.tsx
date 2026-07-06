@@ -1,10 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import privacyHero from "@/assets/policies/privacy.jpg";
 
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({ meta: [{ title: "Privacy Policy — Grip Nova Co." }] }),
   component: () => (
     <PolicyPage
       title="Privacy Policy"
+      heroImage={privacyHero}
+      heroAlt="Data privacy and security"
       body={[
         "Grip Nova Co. (\"we\", \"our\", \"us\") respects your privacy. This policy explains what personal information we collect when you visit our website or place an order, how we use it, how we protect it, and the choices you have.",
         "Information we collect: name, mobile number, delivery address, email (if provided), order details, and basic device/browser information collected via standard web logs. We do not collect government IDs, card numbers or bank credentials on this website — payments are handled off-platform via UPI, bank transfer or cash on delivery, arranged over WhatsApp.",
@@ -22,9 +25,29 @@ export const Route = createFileRoute("/privacy-policy")({
   ),
 });
 
-function PolicyPage({ title, body }: { title: string; body: string[] }) {
+function PolicyPage({
+  title,
+  body,
+  heroImage,
+  heroAlt,
+}: {
+  title: string;
+  body: string[];
+  heroImage?: string;
+  heroAlt?: string;
+}) {
   return (
     <div className="container-page max-w-3xl py-14">
+      {heroImage && (
+        <div className="mb-8 overflow-hidden rounded-3xl border border-border bg-muted">
+          <img
+            src={heroImage}
+            alt={heroAlt ?? ""}
+            loading="lazy"
+            className="h-56 w-full object-cover sm:h-72"
+          />
+        </div>
+      )}
       <h1 className="font-display text-4xl font-extrabold">{title}</h1>
       <p className="mt-2 text-sm text-muted-foreground">Last updated: July 2026</p>
       <div className="mt-6 space-y-4 text-foreground/90 leading-relaxed">
