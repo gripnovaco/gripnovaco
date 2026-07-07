@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { CATEGORIES, type Category } from "@/lib/products";
@@ -12,38 +12,42 @@ export function ShopBrowser({ activeCategory }: Props) {
   const products = useCatalog((s) => s.products);
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<"featured" | "price-asc" | "price-desc">("featured");
+  const pathCategory = useRouterState({
+    select: (state) => state.location.pathname.split("/").filter(Boolean)[1] ?? "",
+  });
+  const resolvedActiveCategory = activeCategory ?? CATEGORIES.find((c) => c.slug === pathCategory);
 
   const filtered = useMemo(() => {
     let r = products;
-    if (activeCategory) r = r.filter((p) => p.category === activeCategory.slug);
+    if (resolvedActiveCategory) r = r.filter((p) => p.category === resolvedActiveCategory.slug);
     if (q.trim()) r = r.filter((p) => p.name.toLowerCase().includes(q.toLowerCase()));
     if (sort === "price-asc") r = [...r].sort((a, b) => a.price - b.price);
     if (sort === "price-desc") r = [...r].sort((a, b) => b.price - a.price);
     return r;
-  }, [products, q, sort, activeCategory]);
+  }, [products, q, sort, resolvedActiveCategory]);
 
   const groups = Array.from(new Set(CATEGORIES.map((c) => c.group)));
 
   return (
     <div className="container-page py-8">
-      {activeCategory ? (
+      {resolvedActiveCategory ? (
         <nav className="mb-3 text-sm text-muted-foreground">
           <Link to="/" className="hover:text-primary">Home</Link> /{" "}
           <Link to="/shop" className="hover:text-primary">Shop</Link> /{" "}
-          <span className="text-foreground">{activeCategory.name}</span>
+          <span className="text-foreground">{resolvedActiveCategory.name}</span>
         </nav>
       ) : null}
 
       <header className="mb-6">
-        {activeCategory ? (
+        {resolvedActiveCategory ? (
           <>
             <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-              {activeCategory.group}
+              {resolvedActiveCategory.group}
             </span>
             <h1 className="mt-1 font-display text-3xl font-extrabold sm:text-4xl">
-              {activeCategory.name}
+              {resolvedActiveCategory.name}
             </h1>
-            <p className="mt-2 max-w-2xl text-muted-foreground">{activeCategory.description}</p>
+            <p className="mt-2 max-w-2xl text-muted-foreground">{resolvedActiveCategory.description}</p>
           </>
         ) : (
           <>
@@ -79,7 +83,7 @@ export function ShopBrowser({ activeCategory }: Props) {
                   <div className="text-xs font-semibold text-foreground">{g}</div>
                   <ul className="mt-1.5 space-y-1.5 text-sm">
                     {CATEGORIES.filter((c) => c.group === g).map((c) => {
-                      const active = activeCategory?.slug === c.slug;
+                      const active = resolvedActiveCategory?.slug === c.slug;
                       return (
                         <li key={c.slug}>
                           <Link
