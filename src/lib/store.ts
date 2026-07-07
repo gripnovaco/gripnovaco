@@ -92,10 +92,12 @@ type AdminState = {
   password: string;
   isAuthed: boolean;
   whatsappNumber: string;
+  gaMeasurementId: string;
   signIn: (u: string, p: string) => boolean;
   signOut: () => void;
   updateCredentials: (u: string, p: string) => void;
   setWhatsapp: (n: string) => void;
+  setGaMeasurementId: (id: string) => void;
 };
 
 export const useAdmin = create<AdminState>()(
@@ -105,6 +107,7 @@ export const useAdmin = create<AdminState>()(
       password: "administrator",
       isAuthed: false,
       whatsappNumber: "917207682536",
+      gaMeasurementId: "",
       signIn: (u, p) => {
         if (u === get().username && p === get().password) {
           set({ isAuthed: true });
@@ -115,6 +118,7 @@ export const useAdmin = create<AdminState>()(
       signOut: () => set({ isAuthed: false }),
       updateCredentials: (u, p) => set({ username: u, password: p }),
       setWhatsapp: (n) => set({ whatsappNumber: n }),
+      setGaMeasurementId: (id) => set({ gaMeasurementId: id.trim() }),
     }),
     { name: "gripnova-admin" },
   ),
