@@ -14,6 +14,7 @@ function SettingsPage() {
   const [u, setU] = useState(admin.username);
   const [p, setP] = useState("");
   const [wa, setWa] = useState(admin.whatsappNumber);
+  const [ga, setGa] = useState(admin.gaMeasurementId);
 
   return (
     <div className="mx-auto max-w-2xl space-y-8">
