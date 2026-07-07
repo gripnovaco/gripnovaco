@@ -14,6 +14,7 @@ function SettingsPage() {
   const [u, setU] = useState(admin.username);
   const [p, setP] = useState("");
   const [wa, setWa] = useState(admin.whatsappNumber);
+  const [ga, setGa] = useState(admin.gaMeasurementId);
 
   return (
     <div className="mx-auto max-w-2xl space-y-8">
@@ -49,6 +50,16 @@ function SettingsPage() {
       >
         <h2 className="font-display text-lg font-bold">WhatsApp Business Number</h2>
         <input value={wa} onChange={(e) => setWa(e.target.value)} placeholder="91XXXXXXXXXX" className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm" />
+        <button className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground">Save</button>
+      </form>
+
+      <form
+        className="space-y-4 rounded-2xl border border-border bg-card p-6"
+        onSubmit={(e) => { e.preventDefault(); admin.setGaMeasurementId(ga); toast.success("Google Analytics updated. Reload the site to activate."); }}
+      >
+        <h2 className="font-display text-lg font-bold">Google Analytics</h2>
+        <p className="text-xs text-muted-foreground">Paste your GA4 Measurement ID (starts with <code>G-</code>). Loaded via gtag.js on all public pages.</p>
+        <input value={ga} onChange={(e) => setGa(e.target.value)} placeholder="G-XXXXXXXXXX" className="w-full rounded-xl border border-input bg-background px-3 py-2 text-sm" />
         <button className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground">Save</button>
       </form>
 

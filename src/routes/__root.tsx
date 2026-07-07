@@ -14,6 +14,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 
 import { Toaster } from "@/components/ui/sonner";
 
@@ -70,6 +72,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Shop premium physiotherapy, rehab, pain management and orthopedic recovery products. Fast delivery across India. Order on WhatsApp." },
       { name: "author", content: "Grip Nova Co." },
       { name: "theme-color", content: "#3a86ff" },
+      { name: "keywords", content: "physiotherapy products India, rehabilitation equipment, buy resistance bands online, TENS machine India, hand grip strengthener, knee brace, lumbar back support, cervical collar, walking stick, aluminium crutches, walker for elderly, foam roller, therapy putty, orthopedic supports, sports recovery, pain relief, WhatsApp order, Grip Nova, GripNova" },
+      { name: "robots", content: "index,follow" },
       { property: "og:title", content: "Grip Nova Co. — Premium Physiotherapy & Rehabilitation Products" },
       { property: "og:description", content: "Shop premium physiotherapy, rehab, pain management and orthopedic recovery products. Fast delivery across India. Order on WhatsApp." },
       { property: "og:type", content: "website" },
@@ -116,6 +120,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <GoogleAnalytics />
       <Toaster richColors position="top-right" />
       {isAdmin ? (
         <Outlet />
@@ -126,7 +131,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
-
+          <WhatsAppFloat />
         </div>
       )}
     </QueryClientProvider>
