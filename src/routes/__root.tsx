@@ -120,6 +120,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <GoogleAnalytics />
       <Toaster richColors position="top-right" />
       {isAdmin ? (
         <Outlet />
@@ -130,7 +131,7 @@ function RootComponent() {
             <Outlet />
           </main>
           <Footer />
-
+          <WhatsAppFloat />
         </div>
       )}
     </QueryClientProvider>
