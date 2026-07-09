@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBag, Trash2, MessageCircle } from "lucide-react";
 import { ProductImage } from "@/components/ProductImage";
-import { useCart, useCatalog } from "@/lib/store";
+import { useCart, useCatalog, useOrders } from "@/lib/store";
 import { whatsappOrderUrl } from "@/lib/whatsapp";
 
 export const Route = createFileRoute("/cart")({
-  head: () => ({ meta: [{ title: "Your Cart — GripNova" }] }),
+  head: () => ({ meta: [{ title: "Your Cart — Grip Nova Co." }] }),
   component: CartPage,
 });
 
