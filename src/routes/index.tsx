@@ -59,7 +59,7 @@ function HomePage() {
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 text-sm">
               <Stat label="Products" value={`${products.length}+`} />
-              <Stat label="Customers" value="Happy & growing" />
+              <Stat label="Customers" value="Happy Growing" />
               <Stat label="Avg. rating" value="4.8★" />
             </div>
           </div>
