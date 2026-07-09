@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/lib/store";
+import logoAsset from "@/assets/gripnova-logo.png.asset.json";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -20,13 +21,18 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2">
-          <span className="grid size-9 place-items-center rounded-xl gradient-brand text-white font-display font-black">
-            G
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="Grip Nova Co. logo"
+            className="size-10 object-contain"
+            width={40}
+            height={40}
+          />
           <span className="font-display text-xl font-extrabold tracking-tight">
             Grip <span className="text-primary">Nova</span> Co.
           </span>
         </Link>
+
 
         <nav className="hidden items-center gap-8 lg:flex">
           {nav.map((n) => (
