@@ -3,7 +3,7 @@ import { MessageCircle, Minus, Plus, ShoppingCart, Star } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import type { Product } from "@/lib/products";
-import { useCart } from "@/lib/store";
+import { useCart, useOrders } from "@/lib/store";
 import { whatsappOrderUrl } from "@/lib/whatsapp";
 import { ProductImage } from "./ProductImage";
 
@@ -13,6 +13,25 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
   const discount = Math.round(((product.mrp - product.price) / product.mrp) * 100);
   const [qty, setQty] = useState(1);
   const add = useCart((s) => s.add);
+  const addOrder = useOrders((s) => s.addOrder);
+
+  const handleBuyNow = () => {
+    const order = addOrder({
+      items: [{
+        productId: product.id,
+        name: product.name,
+        quantity: qty,
+        price: product.price,
+        image: product.images[0],
+      }],
+      total: product.price * qty,
+    });
+    return whatsappOrderUrl(
+      [{ name: product.name, quantity: qty, price: product.price, image: product.images[0] }],
+      order.id,
+    );
+  };
+
 
   return (
     <div className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:shadow-[var(--shadow-card)]">
