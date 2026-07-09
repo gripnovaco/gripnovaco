@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Pencil, Plus, Trash2, X } from "lucide-react";
+import { Eye, EyeOff, Pencil, Plus, Trash2, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { CATEGORIES, type Product } from "@/lib/products";

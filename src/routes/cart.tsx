@@ -86,8 +86,30 @@ function CartPage() {
             <div className="mt-3 flex justify-between border-t border-border pt-3 text-base font-bold"><dt>Total</dt><dd>₹{subtotal.toLocaleString("en-IN")}</dd></div>
           </dl>
           <a
-            href={whatsappOrderUrl(lines.map((l) => ({ name: l.product.name, quantity: l.quantity })))}
-            target="_blank" rel="noreferrer"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              const order = useOrders.getState().addOrder({
+                items: lines.map((l) => ({
+                  productId: l.productId,
+                  name: l.product.name,
+                  quantity: l.quantity,
+                  price: l.product.price,
+                  image: l.product.images[0],
+                })),
+                total: subtotal,
+              });
+              const url = whatsappOrderUrl(
+                lines.map((l) => ({
+                  name: l.product.name,
+                  quantity: l.quantity,
+                  price: l.product.price,
+                  image: l.product.images[0],
+                })),
+                order.id,
+              );
+              window.open(url, "_blank", "noopener,noreferrer");
+            }}
             className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
           >
             <MessageCircle className="size-4" /> Checkout on WhatsApp

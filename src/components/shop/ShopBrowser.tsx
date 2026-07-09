@@ -9,7 +9,8 @@ type Props = {
 };
 
 export function ShopBrowser({ activeCategory }: Props) {
-  const products = useCatalog((s) => s.products);
+  const allProducts = useCatalog((s) => s.products);
+  const products = useMemo(() => allProducts.filter((p) => p.visible !== false), [allProducts]);
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<"featured" | "price-asc" | "price-desc">("featured");
   const pathCategory = useRouterState({
