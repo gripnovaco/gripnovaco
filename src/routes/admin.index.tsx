@@ -1,24 +1,34 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Box, FileText, MessageCircle, Tag, TrendingUp, Users } from "lucide-react";
-import { useCatalog } from "@/lib/store";
+import { Box, Eye, EyeOff, FileText, ShoppingBag, Tag, TrendingUp } from "lucide-react";
+import { useCatalog, useOrders } from "@/lib/store";
 import { CATEGORIES } from "@/lib/products";
 
 export const Route = createFileRoute("/admin/")({
-  head: () => ({ meta: [{ title: "Dashboard — GripNova Admin" }] }),
+  head: () => ({ meta: [{ title: "Dashboard — Grip Nova Co. Admin" }] }),
   component: AdminDashboard,
 });
 
 function AdminDashboard() {
   const products = useCatalog((s) => s.products);
   const posts = useCatalog((s) => s.posts);
+  const orders = useOrders((s) => s.orders);
+
+  const visibleCount = products.filter((p) => p.visible !== false).length;
+  const hiddenCount = products.length - visibleCount;
+  const pendingOrders = orders.filter((o) => o.status === "pending").length;
+  const revenue = orders
+    .filter((o) => o.status === "completed")
+    .reduce((s, o) => s + o.total, 0);
 
   const stats = [
     { label: "Total Products", value: products.length, icon: Box, hue: "from-sky-100 to-blue-200" },
+    { label: "Visible", value: visibleCount, icon: Eye, hue: "from-emerald-100 to-teal-200" },
+    { label: "Hidden", value: hiddenCount, icon: EyeOff, hue: "from-slate-100 to-slate-200" },
     { label: "Categories", value: CATEGORIES.length, icon: Tag, hue: "from-indigo-100 to-blue-200" },
-    { label: "Website Visitors", value: "12,480", icon: Users, hue: "from-cyan-100 to-sky-200" },
-    { label: "WhatsApp Leads", value: "342", icon: MessageCircle, hue: "from-blue-100 to-indigo-200" },
+    { label: "Total Orders", value: orders.length, icon: ShoppingBag, hue: "from-blue-100 to-indigo-200" },
+    { label: "Pending Orders", value: pendingOrders, icon: ShoppingBag, hue: "from-amber-100 to-orange-200" },
     { label: "Blog Articles", value: posts.length, icon: FileText, hue: "from-sky-50 to-blue-100" },
-    { label: "Orders (7d)", value: "86", icon: TrendingUp, hue: "from-blue-50 to-cyan-100" },
+    { label: "Revenue (completed)", value: `₹${revenue.toLocaleString("en-IN")}`, icon: TrendingUp, hue: "from-blue-50 to-cyan-100" },
   ];
 
   const latest = products.slice(0, 5);
