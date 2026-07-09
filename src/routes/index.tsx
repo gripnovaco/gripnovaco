@@ -26,7 +26,8 @@ const groups = [
 ];
 
 function HomePage() {
-  const products = useCatalog((s) => s.products);
+  const allProducts = useCatalog((s) => s.products);
+  const products = allProducts.filter((p) => p.visible !== false);
   const featured = products.filter((p) => p.featured).slice(0, 4);
   const bestSellers = products.filter((p) => p.bestSeller).slice(0, 4);
   const newArrivals = products.filter((p) => p.newArrival).slice(0, 4);
@@ -51,14 +52,14 @@ function HomePage() {
               <Link to="/shop" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:translate-y-[-1px]">
                 Shop Now <ArrowRight className="size-4" />
               </Link>
-              <a href={whatsappEnquiryUrl("Hi GripNova, I'd like product recommendations.")} target="_blank" rel="noreferrer"
+              <a href={whatsappEnquiryUrl("Hi Grip Nova Co., I'd like to book a physiotherapy session. Please share available slots and options (in-clinic / home visit).")} target="_blank" rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white/70 px-6 py-3 text-sm font-semibold text-foreground backdrop-blur hover:bg-white">
-                <MessageCircle className="size-4 text-whatsapp" /> Talk to an expert
+                <MessageCircle className="size-4 text-whatsapp" /> Book a physio session
               </a>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 text-sm">
-              <Stat label="Products" value="500+" />
-              <Stat label="Happy customers" value="25k+" />
+              <Stat label="Products" value={`${products.length}+`} />
+              <Stat label="Customers" value="Happy & growing" />
               <Stat label="Avg. rating" value="4.8★" />
             </div>
           </div>

@@ -1,5 +1,5 @@
 import { createFileRoute, Link, Outlet, redirect, useNavigate } from "@tanstack/react-router";
-import { BarChart3, Box, FileText, LogOut, Settings } from "lucide-react";
+import { BarChart3, Box, FileText, LogOut, Settings, ShoppingBag } from "lucide-react";
 import { useAdmin } from "@/lib/store";
 
 export const Route = createFileRoute("/admin")({
@@ -25,6 +25,7 @@ function AdminLayout() {
         <nav className="mt-8 space-y-1 text-sm">
           {[
             { to: "/admin", label: "Dashboard", icon: BarChart3, exact: true },
+            { to: "/admin/orders", label: "Orders", icon: ShoppingBag },
             { to: "/admin/products", label: "Products", icon: Box },
             { to: "/admin/blog", label: "Blog", icon: FileText },
             { to: "/admin/settings", label: "Settings", icon: Settings },

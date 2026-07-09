@@ -10,12 +10,48 @@ function getNumber() {
   }
 }
 
-export function whatsappOrderUrl(items: { name: string; quantity: number }[]) {
+export type OrderLine = {
+  name: string;
+  quantity: number;
+  price?: number;
+  image?: string; // absolute URL preferred
+};
+
+function absUrl(u?: string) {
+  if (!u) return "";
+  if (/^https?:\/\//i.test(u)) return u;
+  if (typeof window !== "undefined") return window.location.origin + u;
+  return u;
+}
+
+export function buildOrderMessage(items: OrderLine[], orderId?: string) {
+  const header = orderId
+    ? `Hello Grip Nova Co. Team,%0A%0A*New Order #${orderId}*%0A`
+    : `Hello Grip Nova Co. Team,%0A%0A*New Order Request*%0A`;
   const lines = items.length
-    ? items.map((i) => `• ${i.name} — Qty: ${i.quantity}`).join("%0A")
-    : "• (please share product details)";
-  const msg = `Hello Grip Nova Co. Team,%0A%0AI would like to order the following products:%0A${lines}%0A%0APlease share pricing, payment details and delivery timeline.%0A%0AThank you.`;
-  return `https://wa.me/${getNumber()}?text=${msg}`;
+    ? items.map((i, idx) => {
+        const parts = [
+          `%0A*${idx + 1}. ${i.name}*`,
+          `   • Qty: ${i.quantity}`,
+        ];
+        if (typeof i.price === "number") {
+          parts.push(`   • Price: ₹${i.price.toLocaleString("en-IN")}`);
+          parts.push(`   • Subtotal: ₹${(i.price * i.quantity).toLocaleString("en-IN")}`);
+        }
+        const img = absUrl(i.image);
+        if (img) parts.push(`   • Image: ${img}`);
+        return parts.join("%0A");
+      }).join("%0A")
+    : "%0A• (please share product details)";
+  const total = items.reduce((s, i) => s + (i.price ?? 0) * i.quantity, 0);
+  const totalLine = total > 0
+    ? `%0A%0A*Order Total: ₹${total.toLocaleString("en-IN")}*`
+    : "";
+  return `${header}${lines}${totalLine}%0A%0APlease confirm availability, payment method and delivery timeline.%0A%0AThank you.`;
+}
+
+export function whatsappOrderUrl(items: OrderLine[], orderId?: string) {
+  return `https://wa.me/${getNumber()}?text=${buildOrderMessage(items, orderId)}`;
 }
 
 export function whatsappEnquiryUrl(message: string) {

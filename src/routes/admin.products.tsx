@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Pencil, Plus, Trash2, X } from "lucide-react";
+import { Eye, EyeOff, Pencil, Plus, Trash2, X } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { CATEGORIES, type Product } from "@/lib/products";
@@ -20,6 +20,7 @@ function AdminProducts() {
   const products = useCatalog((s) => s.products);
   const upsert = useCatalog((s) => s.upsertProduct);
   const remove = useCatalog((s) => s.deleteProduct);
+  const toggleVisible = useCatalog((s) => s.toggleProductVisible);
   const [editing, setEditing] = useState<Product | null>(null);
   const [q, setQ] = useState("");
 
@@ -30,7 +31,7 @@ function AdminProducts() {
       <header className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] gap-4">
         <div className="min-w-0">
           <h1 className="font-display text-3xl font-extrabold">Products</h1>
-          <p className="mt-1 text-muted-foreground">Add, edit and manage your product catalog.</p>
+          <p className="mt-1 text-muted-foreground">Add, edit and manage your product catalog. Toggle the eye icon to show or hide a product on the website.</p>
         </div>
         <button onClick={() => setEditing(empty())} className="inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">
           <Plus className="size-4" /> New Product
@@ -43,21 +44,37 @@ function AdminProducts() {
       <div className="overflow-hidden rounded-2xl border border-border bg-card">
         <table className="w-full text-sm">
           <thead className="border-b border-border bg-secondary/30 text-left text-xs uppercase tracking-wider text-muted-foreground">
-            <tr><th className="px-4 py-3">Name</th><th className="px-4 py-3">Category</th><th className="px-4 py-3">Price</th><th className="px-4 py-3">MRP</th><th className="px-4 py-3 text-right">Actions</th></tr>
+            <tr><th className="px-4 py-3">Name</th><th className="px-4 py-3">Category</th><th className="px-4 py-3">Price</th><th className="px-4 py-3">MRP</th><th className="px-4 py-3">Status</th><th className="px-4 py-3 text-right">Actions</th></tr>
           </thead>
           <tbody>
-            {filtered.map((p) => (
-              <tr key={p.id} className="border-b border-border last:border-0">
-                <td className="px-4 py-3 font-medium">{p.name}</td>
-                <td className="px-4 py-3 text-muted-foreground">{p.category}</td>
-                <td className="px-4 py-3">₹{p.price.toLocaleString("en-IN")}</td>
-                <td className="px-4 py-3 text-muted-foreground">₹{p.mrp.toLocaleString("en-IN")}</td>
-                <td className="px-4 py-3 text-right">
-                  <button onClick={() => setEditing(p)} className="mr-2 inline-flex size-8 items-center justify-center rounded-lg hover:bg-secondary"><Pencil className="size-4" /></button>
-                  <button onClick={() => { if (confirm("Delete this product?")) { remove(p.id); toast.success("Deleted"); }}} className="inline-flex size-8 items-center justify-center rounded-lg text-destructive hover:bg-destructive/10"><Trash2 className="size-4" /></button>
-                </td>
-              </tr>
-            ))}
+            {filtered.map((p) => {
+              const visible = p.visible !== false;
+              return (
+                <tr key={p.id} className={`border-b border-border last:border-0 ${visible ? "" : "opacity-60"}`}>
+                  <td className="px-4 py-3 font-medium">{p.name}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{p.category}</td>
+                  <td className="px-4 py-3">₹{p.price.toLocaleString("en-IN")}</td>
+                  <td className="px-4 py-3 text-muted-foreground">₹{p.mrp.toLocaleString("en-IN")}</td>
+                  <td className="px-4 py-3">
+                    <span className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold ${visible ? "bg-emerald-100 text-emerald-700" : "bg-muted text-muted-foreground"}`}>
+                      {visible ? "Visible" : "Hidden"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    <button
+                      onClick={() => { toggleVisible(p.id); toast.success(visible ? "Hidden from website" : "Now visible on website"); }}
+                      className="mr-2 inline-flex size-8 items-center justify-center rounded-lg hover:bg-secondary"
+                      title={visible ? "Hide from website" : "Show on website"}
+                      aria-label={visible ? "Hide product" : "Show product"}
+                    >
+                      {visible ? <Eye className="size-4" /> : <EyeOff className="size-4" />}
+                    </button>
+                    <button onClick={() => setEditing(p)} className="mr-2 inline-flex size-8 items-center justify-center rounded-lg hover:bg-secondary"><Pencil className="size-4" /></button>
+                    <button onClick={() => { if (confirm("Delete this product?")) { remove(p.id); toast.success("Deleted"); }}} className="inline-flex size-8 items-center justify-center rounded-lg text-destructive hover:bg-destructive/10"><Trash2 className="size-4" /></button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
