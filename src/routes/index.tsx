@@ -9,7 +9,7 @@ import { whatsappEnquiryUrl } from "@/lib/whatsapp";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "GripNova — Premium Physiotherapy & Rehabilitation Products" },
+      { title: "GripNovaCo — Premium Physiotherapy & Rehabilitation Products" },
       { name: "description", content: "Shop physiotherapy, rehab, pain management and orthopedic recovery products. Order on WhatsApp. Fast delivery across India." },
     ],
   }),
