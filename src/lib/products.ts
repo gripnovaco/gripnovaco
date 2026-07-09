@@ -61,6 +61,7 @@ export type Product = {
   rating: number;
   reviewCount: number;
   inStock: boolean;
+  visible?: boolean; // defaults to true if undefined
 };
 
 export type Category = {
