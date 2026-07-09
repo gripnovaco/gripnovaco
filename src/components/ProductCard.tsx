@@ -107,9 +107,12 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
             <ShoppingCart className="size-4" />
           </button>
           <a
-            href={whatsappOrderUrl([{ name: product.name, quantity: qty }])}
-            target="_blank"
-            rel="noreferrer"
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              const url = handleBuyNow();
+              window.open(url, "_blank", "noopener,noreferrer");
+            }}
             className="inline-flex items-center justify-center gap-1.5 rounded-full bg-destructive px-3 py-2 text-xs font-semibold text-destructive-foreground shadow-[0_8px_24px_-8px_oklch(0.6_0.22_25/0.5)] transition hover:translate-y-[-1px]"
           >
             <MessageCircle className="size-3.5" /> Buy Now
