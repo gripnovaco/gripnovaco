@@ -50,6 +50,7 @@ type CatalogState = {
   posts: BlogPost[];
   upsertProduct: (p: Product) => void;
   deleteProduct: (id: string) => void;
+  toggleProductVisible: (id: string) => void;
   upsertPost: (p: BlogPost) => void;
   deletePost: (slug: string) => void;
   reset: () => void;
@@ -70,6 +71,12 @@ export const useCatalog = create<CatalogState>()(
           };
         }),
       deleteProduct: (id) => set((s) => ({ products: s.products.filter((x) => x.id !== id) })),
+      toggleProductVisible: (id) =>
+        set((s) => ({
+          products: s.products.map((x) =>
+            x.id === id ? { ...x, visible: x.visible === false ? true : false } : x,
+          ),
+        })),
       upsertPost: (p) =>
         set((s) => {
           const exists = s.posts.some((x) => x.slug === p.slug);
@@ -82,7 +89,60 @@ export const useCatalog = create<CatalogState>()(
       deletePost: (slug) => set((s) => ({ posts: s.posts.filter((x) => x.slug !== slug) })),
       reset: () => set({ products: SEED_PRODUCTS, posts: SEED_POSTS }),
     }),
-    { name: "gripnova-catalog", version: 8 },
+    { name: "gripnova-catalog", version: 9 },
+  ),
+);
+
+// ---------- Orders (admin, localStorage-backed) ----------
+export type OrderItem = {
+  productId: string;
+  name: string;
+  quantity: number;
+  price: number;
+  image?: string;
+};
+
+export type OrderStatus = "pending" | "confirmed" | "completed" | "cancelled";
+
+export type Order = {
+  id: string;
+  createdAt: number;
+  items: OrderItem[];
+  total: number;
+  status: OrderStatus;
+  channel: "whatsapp";
+  note?: string;
+};
+
+type OrdersState = {
+  orders: Order[];
+  addOrder: (o: Omit<Order, "id" | "createdAt" | "status" | "channel"> & { status?: OrderStatus }) => Order;
+  setStatus: (id: string, status: OrderStatus) => void;
+  removeOrder: (id: string) => void;
+};
+
+export const useOrders = create<OrdersState>()(
+  persist(
+    (set, get) => ({
+      orders: [],
+      addOrder: (o) => {
+        const order: Order = {
+          id: "GN" + Date.now().toString().slice(-8),
+          createdAt: Date.now(),
+          status: o.status ?? "pending",
+          channel: "whatsapp",
+          items: o.items,
+          total: o.total,
+          note: o.note,
+        };
+        set({ orders: [order, ...get().orders] });
+        return order;
+      },
+      setStatus: (id, status) =>
+        set((s) => ({ orders: s.orders.map((o) => (o.id === id ? { ...o, status } : o)) })),
+      removeOrder: (id) => set((s) => ({ orders: s.orders.filter((o) => o.id !== id) })),
+    }),
+    { name: "gripnova-orders", version: 1 },
   ),
 );
 
