@@ -24,9 +24,9 @@ export function Header() {
           <img
             src={logoAsset.url}
             alt="Grip Nova Co. logo"
-            className="size-10 object-contain"
-            width={40}
-            height={40}
+            className="h-11 w-auto object-contain"
+            width={110}
+            height={44}
           />
           <span className="font-display text-xl font-extrabold tracking-tight">
             Grip <span className="text-primary">Nova</span> Co.
