@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Menu, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
 import { useCart } from "@/lib/store";
-import logoAsset from "@/assets/gripnova-logo.png.asset.json";
+import logoUrl from "@/assets/gripnova-logo.png";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -22,7 +22,7 @@ export function Header() {
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2">
           <img
-            src={logoAsset.url}
+            src={logoUrl}
             alt="Grip Nova Co. logo"
             className="h-11 w-auto object-contain"
             width={110}
